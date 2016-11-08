@@ -12,7 +12,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
-
+    @IBOutlet var textView: NSTextView!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
@@ -26,7 +26,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let url = panel.urls.first
             else { NSApp.terminate(self); return }
 
-        print(url)
+        report(url)
+    }
+
+    func report(_ text: CustomStringConvertible) {
+
+        textView.string = (textView.string ?? "")
+            .appending(text.description)
+            .appending("\n\n")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

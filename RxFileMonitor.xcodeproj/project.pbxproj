@@ -12,6 +12,7 @@
 		5096B2B81DD2216B00076058 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5096B2B61DD2216B00076058 /* RxSwift.framework */; };
 		5096B2B91DD2217900076058 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5096B2B61DD2216B00076058 /* RxSwift.framework */; };
 		5096B2BA1DD2217900076058 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5096B2B61DD2216B00076058 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5096B2BC1DD221D700076058 /* Monitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096B2BB1DD221D700076058 /* Monitoring.swift */; };
 		50E8354D1DD1B26900783B62 /* RxFileMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E835431DD1B26900783B62 /* RxFileMonitor.framework */; };
 		50E835521DD1B26900783B62 /* RxFileMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E835511DD1B26900783B62 /* RxFileMonitorTests.swift */; };
 		50E835541DD1B26900783B62 /* RxFileMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 50E835461DD1B26900783B62 /* RxFileMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -59,6 +60,7 @@
 /* Begin PBXFileReference section */
 		5096B2B41DD21D0B00076058 /* Change.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Change.swift; sourceTree = "<group>"; };
 		5096B2B61DD2216B00076058 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/Mac/RxSwift.framework; sourceTree = "<group>"; };
+		5096B2BB1DD221D700076058 /* Monitoring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monitoring.swift; sourceTree = "<group>"; };
 		50E835431DD1B26900783B62 /* RxFileMonitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxFileMonitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50E835461DD1B26900783B62 /* RxFileMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxFileMonitor.h; sourceTree = "<group>"; };
 		50E835471DD1B26900783B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				50E835461DD1B26900783B62 /* RxFileMonitor.h */,
+				5096B2BB1DD221D700076058 /* Monitoring.swift */,
 				5096B2BD1DD222D000076058 /* Monitors */,
 				50E835471DD1B26900783B62 /* Info.plist */,
 			);
@@ -314,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50E835761DD1D1C200783B62 /* FolderContentMonitor.swift in Sources */,
+				5096B2BC1DD221D700076058 /* Monitoring.swift in Sources */,
 				50E8356F1DD1BAEE00783B62 /* FileMonitor.swift in Sources */,
 				5096B2B51DD21D0B00076058 /* Change.swift in Sources */,
 			);

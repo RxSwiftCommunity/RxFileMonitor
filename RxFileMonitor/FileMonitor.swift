@@ -8,7 +8,19 @@
 
 import Foundation
 
+/// Monitor for a particular file or folder. Change events
+/// will fire when the contents of the URL changes:
+///
+/// -   If it's a folder, it will fire when you add/remove/rename files.
+/// -   If it's a file, it will fire when you change its contents,
+///    remove, or rename it.
+///
+/// The URL will not update if you rename the file, though.
 public class FileMonitor {
+
+    public struct ChangeEvent {
+        public let url: URL
+    }
 
     public static let monitorQueue = DispatchQueue(label: "com.cleancocoa.rxfilemonitor.monitorqueue", qos: .background, attributes: [.concurrent])
 
@@ -16,9 +28,22 @@ public class FileMonitor {
     var monitorSource: DispatchSourceFileSystemObject?
 
     let url: URL
-    let callback: () -> Void
+    let callback: (ChangeEvent) -> Void
 
-    public init(url: URL, callback: @escaping () -> Void) {
+    /// Set up a new monitor. You have to call `start()` first
+    /// to make it work.
+    ///
+    /// - parameter url: File or folder to monitor for changes.
+    /// - parameter callback: Will be called when a change event fires.
+    ///
+    ///     If it's a folder, it will fire when you add/remove/rename files.
+    ///
+    ///     If it's a file, it will fire when you change its contents,
+    ///    remove, or rename it.
+    /// 
+    /// - note: Renaming files will not fire events with the
+    ///   new URL.
+    public init(url: URL, callback: @escaping (ChangeEvent) -> Void) {
 
         self.url = url
         self.callback = callback
@@ -58,7 +83,7 @@ public class FileMonitor {
 
     private func didObserveChange() {
 
-        self.callback()
+        self.callback(ChangeEvent(url: self.url))
     }
 
     public func stop() {

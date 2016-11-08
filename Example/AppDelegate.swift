@@ -30,8 +30,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             else { NSApp.terminate(self); return }
 
         report(url)
-        monitor = FileMonitor(url: url) { [weak self] in
-            self?.report("change in folder")
+        monitor = FileMonitor(url: url) { [weak self] event in
+            self?.report("change in folder \(event.url)")
         }
         monitor?.start()
 

@@ -7,12 +7,15 @@
 //
 
 import Cocoa
+import RxFileMonitor
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
     @IBOutlet var textView: NSTextView!
+
+    var monitor: FileMonitor?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
@@ -27,6 +30,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             else { NSApp.terminate(self); return }
 
         report(url)
+        monitor = FileMonitor(url: url)
+        monitor?.start()
     }
 
     func report(_ text: CustomStringConvertible) {
@@ -37,8 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+
+        monitor?.stop()
     }
-
 }
-

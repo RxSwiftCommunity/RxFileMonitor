@@ -13,6 +13,9 @@
 		50E835641DD1B28400783B62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E835631DD1B28400783B62 /* AppDelegate.swift */; };
 		50E835661DD1B28400783B62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50E835651DD1B28400783B62 /* Assets.xcassets */; };
 		50E835691DD1B28400783B62 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50E835671DD1B28400783B62 /* MainMenu.xib */; };
+		50E8356F1DD1BAEE00783B62 /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E8356E1DD1BAEE00783B62 /* FileMonitor.swift */; };
+		50E835701DD1BE2700783B62 /* RxFileMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E835431DD1B26900783B62 /* RxFileMonitor.framework */; };
+		50E835711DD1BE2700783B62 /* RxFileMonitor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50E835431DD1B26900783B62 /* RxFileMonitor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,7 +26,28 @@
 			remoteGlobalIDString = 50E835421DD1B26900783B62;
 			remoteInfo = RxFileMonitor;
 		};
+		50E835721DD1BE2700783B62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50E8353A1DD1B26900783B62 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50E835421DD1B26900783B62;
+			remoteInfo = RxFileMonitor;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		50E835741DD1BE2700783B62 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				50E835711DD1BE2700783B62 /* RxFileMonitor.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		50E835431DD1B26900783B62 /* RxFileMonitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxFileMonitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +61,7 @@
 		50E835651DD1B28400783B62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50E835681DD1B28400783B62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		50E8356A1DD1B28400783B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50E8356E1DD1BAEE00783B62 /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50E835701DD1BE2700783B62 /* RxFileMonitor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				50E835461DD1B26900783B62 /* RxFileMonitor.h */,
+				50E8356E1DD1BAEE00783B62 /* FileMonitor.swift */,
 				50E835471DD1B26900783B62 /* Info.plist */,
 			);
 			path = RxFileMonitor;
@@ -171,10 +198,12 @@
 				50E8355D1DD1B28400783B62 /* Sources */,
 				50E8355E1DD1B28400783B62 /* Frameworks */,
 				50E8355F1DD1B28400783B62 /* Resources */,
+				50E835741DD1BE2700783B62 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				50E835731DD1BE2700783B62 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -194,6 +223,7 @@
 					50E835421DD1B26900783B62 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = FRMDA3XRGC;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 					50E8354B1DD1B26900783B62 = {
@@ -259,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50E8356F1DD1BAEE00783B62 /* FileMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +316,11 @@
 			isa = PBXTargetDependency;
 			target = 50E835421DD1B26900783B62 /* RxFileMonitor */;
 			targetProxy = 50E8354E1DD1B26900783B62 /* PBXContainerItemProxy */;
+		};
+		50E835731DD1BE2700783B62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50E835421DD1B26900783B62 /* RxFileMonitor */;
+			targetProxy = 50E835721DD1BE2700783B62 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -399,6 +435,7 @@
 		50E835581DD1B26900783B62 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -413,6 +450,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.christiantietze.RxFileMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -420,6 +458,7 @@
 		50E835591DD1B26900783B62 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -441,6 +480,7 @@
 		50E8355B1DD1B26900783B62 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = FRMDA3XRGC;
 				INFOPLIST_FILE = RxFileMonitorTests/Info.plist;
@@ -454,6 +494,7 @@
 		50E8355C1DD1B26900783B62 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = FRMDA3XRGC;
 				INFOPLIST_FILE = RxFileMonitorTests/Info.plist;
@@ -467,6 +508,7 @@
 		50E8356C1DD1B28400783B62 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = FRMDA3XRGC;
@@ -481,6 +523,7 @@
 		50E8356D1DD1B28400783B62 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = FRMDA3XRGC;

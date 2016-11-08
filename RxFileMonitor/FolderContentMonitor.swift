@@ -57,21 +57,20 @@ public class FolderContentMonitor {
 
     private let eventCallback: FSEventStreamCallback = { (stream: ConstFSEventStreamRef, contextInfo: UnsafeMutableRawPointer?, numEvents: Int, eventPaths: UnsafeMutableRawPointer, eventFlags: UnsafePointer<FSEventStreamEventFlags>?, eventIds: UnsafePointer<FSEventStreamEventId>?) in
 
+        guard let eventIds = eventIds,
+            let eventFlags = eventFlags,
+            let paths = unsafeBitCast(eventPaths, to: NSArray.self) as? [String]
+            else { return }
+
         let fileSystemWatcher: FolderContentMonitor = unsafeBitCast(contextInfo, to: FolderContentMonitor.self)
-        let paths = unsafeBitCast(eventPaths, to: NSArray.self) as! [String]
 
-        for index in 0..<numEvents {
-            fileSystemWatcher.processEvent(eventId: eventIds![index], eventPath: paths[index], eventFlags: eventFlags![index])
-        }
+        (0..<numEvents)
+            .map { (index: Int) -> Event in
+                let change = Change(eventFlags: eventFlags[index])
+                return Event(eventId: eventIds[index], eventPath: paths[index], change: change)
+            }.forEach(fileSystemWatcher.callback)
 
-        fileSystemWatcher.lastEventId = eventIds![numEvents - 1]
-    }
-
-    private func processEvent(eventId: FSEventStreamEventId, eventPath: String, eventFlags: FSEventStreamEventFlags) {
-
-        let change = Change(eventFlags: eventFlags)
-        let event = Event(eventId: eventId, eventPath: eventPath, change: change)
-        callback(event)
+        fileSystemWatcher.lastEventId = eventIds[numEvents - 1]
     }
 
     public func stop() {

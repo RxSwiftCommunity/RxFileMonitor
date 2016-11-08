@@ -12,16 +12,22 @@ public struct Event: CustomStringConvertible {
 
     public let eventId: FSEventStreamEventId
     public let eventPath: String
-    public let eventFlags: FSEventStreamEventFlags
+    public let change: Change
 
     public var description: String {
-        return "\(eventId) - \(eventFlags) - \(eventPath)"
+        return "\(eventId) @ \(eventPath)"
     }
 }
 
 public class FolderContentMonitor {
 
     let callback: (Event) -> Void
+
+    public let pathsToWatch: [String]
+    public private(set) var hasStarted = false
+    private var streamRef: FSEventStreamRef!
+
+    public private(set) var lastEventId: FSEventStreamEventId
 
     public init(pathsToWatch: [String], sinceWhen: FSEventStreamEventId = FSEventStreamEventId(kFSEventStreamEventIdSinceNow), callback: @escaping (Event) -> Void) {
 
@@ -34,7 +40,20 @@ public class FolderContentMonitor {
         stop()
     }
 
-    // MARK: - Private Properties
+    public func start() {
+
+        guard hasStarted == false else { assertionFailure("Start must not be called twice. (Ignoring)"); return }
+
+        var context = FSEventStreamContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
+        context.info = Unmanaged.passUnretained(self).toOpaque()
+        let flags = UInt32(kFSEventStreamCreateFlagUseCFTypes | kFSEventStreamCreateFlagFileEvents)
+        streamRef = FSEventStreamCreate(kCFAllocatorDefault, eventCallback, &context, pathsToWatch as CFArray, lastEventId, 0, flags)
+
+        FSEventStreamScheduleWithRunLoop(streamRef, CFRunLoopGetMain(), CFRunLoopMode.defaultMode.rawValue)
+        FSEventStreamStart(streamRef)
+
+        hasStarted = true
+    }
 
     private let eventCallback: FSEventStreamCallback = { (stream: ConstFSEventStreamRef, contextInfo: UnsafeMutableRawPointer?, numEvents: Int, eventPaths: UnsafeMutableRawPointer, eventFlags: UnsafePointer<FSEventStreamEventFlags>?, eventIds: UnsafePointer<FSEventStreamEventId>?) in
 
@@ -48,40 +67,21 @@ public class FolderContentMonitor {
         fileSystemWatcher.lastEventId = eventIds![numEvents - 1]
     }
 
-    private let pathsToWatch: [String]
-    private var started = false
-    private var streamRef: FSEventStreamRef!
-
     private func processEvent(eventId: FSEventStreamEventId, eventPath: String, eventFlags: FSEventStreamEventFlags) {
 
-        let event = Event(eventId: eventId, eventPath: eventPath, eventFlags: eventFlags)
+        let change = Change(eventFlags: eventFlags)
+        let event = Event(eventId: eventId, eventPath: eventPath, change: change)
         callback(event)
     }
 
-    public private(set) var lastEventId: FSEventStreamEventId
-
-    public func start() {
-        guard started == false else { return }
-
-        var context = FSEventStreamContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
-        context.info = Unmanaged.passUnretained(self).toOpaque()
-        let flags = UInt32(kFSEventStreamCreateFlagUseCFTypes | kFSEventStreamCreateFlagFileEvents)
-        streamRef = FSEventStreamCreate(kCFAllocatorDefault, eventCallback, &context, pathsToWatch as CFArray, lastEventId, 0, flags)
-
-        FSEventStreamScheduleWithRunLoop(streamRef, CFRunLoopGetMain(), CFRunLoopMode.defaultMode.rawValue)
-        FSEventStreamStart(streamRef)
-
-        started = true
-    }
-
     public func stop() {
-        guard started == true else { return }
+        guard hasStarted == true else { return }
 
         FSEventStreamStop(streamRef)
         FSEventStreamInvalidate(streamRef)
         FSEventStreamRelease(streamRef)
         streamRef = nil
 
-        started = false
+        hasStarted = false
     }
 }

@@ -36,7 +36,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         monitor?.start()
 
         contentMonitor = FolderContentMonitor(pathsToWatch: [url.path]) { [weak self] event in
-            self?.report("change in \(event)")
+
+            self?.report("change in \(event) (\(event.change))")
         }
         contentMonitor?.start()
     }

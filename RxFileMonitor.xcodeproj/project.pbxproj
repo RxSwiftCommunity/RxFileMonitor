@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5096B2B51DD21D0B00076058 /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096B2B41DD21D0B00076058 /* Change.swift */; };
 		50E8354D1DD1B26900783B62 /* RxFileMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E835431DD1B26900783B62 /* RxFileMonitor.framework */; };
 		50E835521DD1B26900783B62 /* RxFileMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E835511DD1B26900783B62 /* RxFileMonitorTests.swift */; };
 		50E835541DD1B26900783B62 /* RxFileMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 50E835461DD1B26900783B62 /* RxFileMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +52,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5096B2B41DD21D0B00076058 /* Change.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Change.swift; sourceTree = "<group>"; };
 		50E835431DD1B26900783B62 /* RxFileMonitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxFileMonitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50E835461DD1B26900783B62 /* RxFileMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxFileMonitor.h; sourceTree = "<group>"; };
 		50E835471DD1B26900783B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				50E835461DD1B26900783B62 /* RxFileMonitor.h */,
 				50E8356E1DD1BAEE00783B62 /* FileMonitor.swift */,
 				50E835751DD1D1C200783B62 /* FolderContentMonitor.swift */,
+				5096B2B41DD21D0B00076058 /* Change.swift */,
 				50E835471DD1B26900783B62 /* Info.plist */,
 			);
 			path = RxFileMonitor;
@@ -294,6 +297,7 @@
 			files = (
 				50E835761DD1D1C200783B62 /* FolderContentMonitor.swift in Sources */,
 				50E8356F1DD1BAEE00783B62 /* FileMonitor.swift in Sources */,
+				5096B2B51DD21D0B00076058 /* Change.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +562,7 @@
 				50E835591DD1B26900783B62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		50E8355A1DD1B26900783B62 /* Build configuration list for PBXNativeTarget "RxFileMonitorTests" */ = {
 			isa = XCConfigurationList;
@@ -566,6 +571,7 @@
 				50E8355C1DD1B26900783B62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		50E8356B1DD1B28400783B62 /* Build configuration list for PBXNativeTarget "Example" */ = {
 			isa = XCConfigurationList;
@@ -574,6 +580,7 @@
 				50E8356D1DD1B28400783B62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

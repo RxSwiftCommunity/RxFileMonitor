@@ -24,6 +24,10 @@ public class FileMonitor {
         self.callback = callback
     }
 
+    deinit {
+        stop()
+    }
+
     public func start() {
 
         guard self.monitorSource == nil && self.monitoredFileDescriptor == nil else {
@@ -54,7 +58,6 @@ public class FileMonitor {
 
     private func didObserveChange() {
 
-        print("happens")
         self.callback()
     }
 

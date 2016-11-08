@@ -30,21 +30,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             else { NSApp.terminate(self); return }
 
         report(url)
-        monitor = FileMonitor(url: url) {
-            self.report("some change")
+        monitor = FileMonitor(url: url) { [weak self] in
+            self?.report("change in folder")
         }
         monitor?.start()
+
+        contentMonitor = FolderContentMonitor(pathsToWatch: [url.path]) { [weak self] event in
+            self?.report("change in \(event)")
+        }
+        contentMonitor?.start()
     }
+
+    var contentMonitor: FolderContentMonitor?
 
     func report(_ text: CustomStringConvertible) {
 
-        textView.string = (textView.string ?? "")
-            .appending(text.description)
-            .appending("\n\n")
+        DispatchQueue.main.async {
+            self.textView.string = (self.textView.string ?? "")
+                .appending(text.description)
+                .appending("\n\n")
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
 
         monitor?.stop()
+        contentMonitor?.stop()
     }
 }

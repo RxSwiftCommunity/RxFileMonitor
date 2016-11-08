@@ -16,6 +16,7 @@
 		50E8356F1DD1BAEE00783B62 /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E8356E1DD1BAEE00783B62 /* FileMonitor.swift */; };
 		50E835701DD1BE2700783B62 /* RxFileMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E835431DD1B26900783B62 /* RxFileMonitor.framework */; };
 		50E835711DD1BE2700783B62 /* RxFileMonitor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 50E835431DD1B26900783B62 /* RxFileMonitor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50E835761DD1D1C200783B62 /* FolderContentMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E835751DD1D1C200783B62 /* FolderContentMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		50E835681DD1B28400783B62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		50E8356A1DD1B28400783B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50E8356E1DD1BAEE00783B62 /* FileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
+		50E835751DD1D1C200783B62 /* FolderContentMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderContentMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				50E835461DD1B26900783B62 /* RxFileMonitor.h */,
 				50E8356E1DD1BAEE00783B62 /* FileMonitor.swift */,
+				50E835751DD1D1C200783B62 /* FolderContentMonitor.swift */,
 				50E835471DD1B26900783B62 /* Info.plist */,
 			);
 			path = RxFileMonitor;
@@ -289,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50E835761DD1D1C200783B62 /* FolderContentMonitor.swift in Sources */,
 				50E8356F1DD1BAEE00783B62 /* FileMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -35,7 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Monitoring.folderMonitor(url: url)
             .subscribeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { event in
-                self.report("change in \(event) (\(event.change))")
+                self.report("\(event.filename) changed (\(event.change))")
             })
             .addDisposableTo(disposeBag)
     }

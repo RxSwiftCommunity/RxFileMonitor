@@ -8,17 +8,6 @@
 
 import Foundation
 
-public struct FolderContentChangeEvent: CustomStringConvertible {
-
-    public let eventId: FSEventStreamEventId
-    public let eventPath: String
-    public let change: Change
-
-    public var description: String {
-        return "\(eventPath) (\(eventId)) changed: \(change)"
-    }
-}
-
 public class FolderContentMonitor {
 
     let callback: (FolderContentChangeEvent) -> Void

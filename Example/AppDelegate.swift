@@ -8,6 +8,7 @@
 
 import Cocoa
 import RxFileMonitor
+import RxSwift
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -15,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
     @IBOutlet var textView: NSTextView!
 
-    var monitor: FileMonitor?
+    let disposeBag = DisposeBag()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
@@ -30,19 +31,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             else { NSApp.terminate(self); return }
 
         report(url)
-        monitor = FileMonitor(url: url) { [weak self] event in
-            self?.report("change in folder \(event.url)")
-        }
-        monitor?.start()
 
-        contentMonitor = FolderContentMonitor(pathsToWatch: [url.path]) { [weak self] event in
-
-            self?.report("change in \(event) (\(event.change))")
-        }
-        contentMonitor?.start()
+        Monitoring.folderMonitor(url: url)
+            .subscribeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { event in
+                self.report("change in \(event) (\(event.change))")
+            })
+            .addDisposableTo(disposeBag)
     }
-
-    var contentMonitor: FolderContentMonitor?
 
     func report(_ text: CustomStringConvertible) {
 
@@ -55,7 +51,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
 
-        monitor?.stop()
-        contentMonitor?.stop()
     }
 }

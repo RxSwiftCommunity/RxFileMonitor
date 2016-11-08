@@ -8,20 +8,20 @@
 
 import Foundation
 
-public struct Event: CustomStringConvertible {
+public struct FolderContentChangeEvent: CustomStringConvertible {
 
     public let eventId: FSEventStreamEventId
     public let eventPath: String
     public let change: Change
 
     public var description: String {
-        return "\(eventId) @ \(eventPath)"
+        return "\(eventPath) (\(eventId)) changed: \(change)"
     }
 }
 
 public class FolderContentMonitor {
 
-    let callback: (Event) -> Void
+    let callback: (FolderContentChangeEvent) -> Void
 
     public let pathsToWatch: [String]
     public private(set) var hasStarted = false
@@ -29,7 +29,7 @@ public class FolderContentMonitor {
 
     public private(set) var lastEventId: FSEventStreamEventId
 
-    public init(pathsToWatch: [String], sinceWhen: FSEventStreamEventId = FSEventStreamEventId(kFSEventStreamEventIdSinceNow), callback: @escaping (Event) -> Void) {
+    public init(pathsToWatch: [String], sinceWhen: FSEventStreamEventId = FSEventStreamEventId(kFSEventStreamEventIdSinceNow), callback: @escaping (FolderContentChangeEvent) -> Void) {
 
         self.lastEventId = sinceWhen
         self.pathsToWatch = pathsToWatch
@@ -65,9 +65,9 @@ public class FolderContentMonitor {
         let fileSystemWatcher: FolderContentMonitor = unsafeBitCast(contextInfo, to: FolderContentMonitor.self)
 
         (0..<numEvents)
-            .map { (index: Int) -> Event in
+            .map { (index: Int) -> FolderContentChangeEvent in
                 let change = Change(eventFlags: eventFlags[index])
-                return Event(eventId: eventIds[index], eventPath: paths[index], change: change)
+                return FolderContentChangeEvent(eventId: eventIds[index], eventPath: paths[index], change: change)
             }.forEach(fileSystemWatcher.callback)
 
         fileSystemWatcher.lastEventId = eventIds[numEvents - 1]

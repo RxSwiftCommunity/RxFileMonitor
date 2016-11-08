@@ -30,7 +30,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             else { NSApp.terminate(self); return }
 
         report(url)
-        monitor = FileMonitor(url: url)
+        monitor = FileMonitor(url: url) {
+            self.report("some change")
+        }
         monitor?.start()
     }
 

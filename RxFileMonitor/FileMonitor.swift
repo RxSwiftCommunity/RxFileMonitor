@@ -10,16 +10,18 @@ import Foundation
 
 public class FileMonitor {
 
-    static let monitorQueue = DispatchQueue(label: "com.cleancocoa.rxfilemonitor.monitorqueue", qos: .background, attributes: [.concurrent])
+    public static let monitorQueue = DispatchQueue(label: "com.cleancocoa.rxfilemonitor.monitorqueue", qos: .background, attributes: [.concurrent])
 
     var monitoredFileDescriptor: Int32?
     var monitorSource: DispatchSourceFileSystemObject?
 
     let url: URL
+    let callback: () -> Void
 
-    public init(url: URL) {
+    public init(url: URL, callback: @escaping () -> Void) {
 
         self.url = url
+        self.callback = callback
     }
 
     public func start() {
@@ -50,9 +52,10 @@ public class FileMonitor {
         monitorSource.resume()
     }
 
-    func didObserveChange() {
+    private func didObserveChange() {
 
-        print("Change")
+        print("happens")
+        self.callback()
     }
 
     public func stop() {

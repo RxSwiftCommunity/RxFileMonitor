@@ -3,7 +3,7 @@
 //  RxFileMonitor
 //
 //  Created by Christian Tietze on 08/11/16.
-//  Copyright © 2016 CleanCocoa. All rights reserved.
+//  Copyright © 2016 RxSwiftCommunity https://github.com/RxSwiftCommunity
 //
 
 import Foundation

@@ -66,7 +66,7 @@ let changedFile = Monitoring.folderMonitor(url: folderUrl)
 
 ## License
 
-Copyright (c) 2016 Christian Tietze.
+Copyright (c) 2016 RxSwiftCommunity https://github.com/RxSwiftCommunity
 
 Distributed under The MIT License:
 

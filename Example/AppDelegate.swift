@@ -32,7 +32,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         report(url)
 
-        Monitoring.folderMonitor(url: url)
+        FolderContentMonitor(url: url)
+            .asObservable()
+
+            // Ignore Finder folder settings
+            .filter { $0.filename != ".DS_Store" }
+
+            // Report changes into app's main log
             .subscribeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { event in
                 self.report("\(event.filename) changed (\(event.change))")

@@ -25,7 +25,8 @@ import RxFileMonitor
 let disposeBag = DisposeBag()
 let folderUrl = URL(fileURLWithPath: "/path/to/monitor/")
 
-Monitoring.folderMonitor(url: folderUrl)
+FolderContentMonitor(url: folderUrl)
+    .asObservable()
     .subscribe(onNext: { event in
         print("Folder contents changed at \(event.url) (\(event.change))")
     })
@@ -37,10 +38,11 @@ Monitoring.folderMonitor(url: folderUrl)
 Say you want to update a cache of a folder's notes' contents, you'll be interested in files only:
 
 ```swift
-let changedFile = Monitoring.folderMonitor(url: folderUrl)
+let changedFile = FolderContentMonitor(url: folderUrl)
+    .asObservable()
     // Files only ...
     .filter { $0.change.contains(.isFile) }
-    // ... except the Spotlight cache.
+    // ... except the user's folder settings.
     .filter { $0.filename != ".DS_Store" }
     .map { $0.filename }
     .observeOn(MainScheduler.instance)
@@ -55,7 +57,8 @@ changedFile.subscribe(onNext: cache.updateFile)
 Or if you simply rebuild the whole cache when anything changed, you can stop after filtering for accepted events:
 
 ```swift
-let changedFile = Monitoring.folderMonitor(url: folderUrl)
+let changedFile = FolderContentMonitor(url: folderUrl)
+    .asObservable()
     .filter { $0.change.contains(.isFile) }
     .filter { $0.filename != ".DS_Store" }
     .observeOn(MainScheduler.instance)

@@ -12,7 +12,7 @@
 		5096B2B81DD2216B00076058 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5096B2B61DD2216B00076058 /* RxSwift.framework */; };
 		5096B2B91DD2217900076058 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5096B2B61DD2216B00076058 /* RxSwift.framework */; };
 		5096B2BA1DD2217900076058 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5096B2B61DD2216B00076058 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5096B2BC1DD221D700076058 /* Monitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096B2BB1DD221D700076058 /* Monitoring.swift */; };
+		5096B2BC1DD221D700076058 /* RxFileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096B2BB1DD221D700076058 /* RxFileMonitor.swift */; };
 		5096B2C11DD22D6000076058 /* FolderContentChangeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096B2C01DD22D6000076058 /* FolderContentChangeEvent.swift */; };
 		50E8354D1DD1B26900783B62 /* RxFileMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E835431DD1B26900783B62 /* RxFileMonitor.framework */; };
 		50E835521DD1B26900783B62 /* RxFileMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E835511DD1B26900783B62 /* RxFileMonitorTests.swift */; };
@@ -61,7 +61,7 @@
 /* Begin PBXFileReference section */
 		5096B2B41DD21D0B00076058 /* Change.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Change.swift; sourceTree = "<group>"; };
 		5096B2B61DD2216B00076058 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/Mac/RxSwift.framework; sourceTree = "<group>"; };
-		5096B2BB1DD221D700076058 /* Monitoring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monitoring.swift; sourceTree = "<group>"; };
+		5096B2BB1DD221D700076058 /* RxFileMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxFileMonitor.swift; sourceTree = "<group>"; };
 		5096B2C01DD22D6000076058 /* FolderContentChangeEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderContentChangeEvent.swift; sourceTree = "<group>"; };
 		5096B2C21DD22FC200076058 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5096B2C41DD2333E00076058 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				50E835461DD1B26900783B62 /* RxFileMonitor.h */,
-				5096B2BB1DD221D700076058 /* Monitoring.swift */,
+				5096B2BB1DD221D700076058 /* RxFileMonitor.swift */,
 				5096B2BD1DD222D000076058 /* Monitors */,
 				50E835471DD1B26900783B62 /* Info.plist */,
 			);
@@ -325,7 +325,7 @@
 			files = (
 				50E835761DD1D1C200783B62 /* FolderContentMonitor.swift in Sources */,
 				5096B2C11DD22D6000076058 /* FolderContentChangeEvent.swift in Sources */,
-				5096B2BC1DD221D700076058 /* Monitoring.swift in Sources */,
+				5096B2BC1DD221D700076058 /* RxFileMonitor.swift in Sources */,
 				50E8356F1DD1BAEE00783B62 /* FileMonitor.swift in Sources */,
 				5096B2B51DD21D0B00076058 /* Change.swift in Sources */,
 			);

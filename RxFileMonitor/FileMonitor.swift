@@ -22,7 +22,7 @@ public class FileMonitor {
         public let url: URL
     }
 
-    public static let monitorQueue = DispatchQueue(label: "com.cleancocoa.rxfilemonitor.monitorqueue", qos: .background, attributes: [.concurrent])
+    public static let monitorQueue = DispatchQueue(label: "org.rxswift.rxfilemonitor.monitorqueue", qos: .background, attributes: [.concurrent])
 
     var monitoredFileDescriptor: Int32?
     var monitorSource: DispatchSourceFileSystemObject?

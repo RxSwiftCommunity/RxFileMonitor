@@ -8,6 +8,12 @@
 
 import Foundation
 
+/// Monitor for a particular file or folder. Change events
+/// will fire when the contents of the URL changes:
+///
+/// If it's a folder, it will fire when you add/remove/rename files or folders
+/// below the reference paths. See `Change` for an incomprehensive list of 
+/// events details that will be reported.
 public class FolderContentMonitor {
 
     var callback: ((FolderContentChangeEvent) -> Void)?

@@ -39,6 +39,13 @@ public struct Change: OptionSet {
     public static let xattrsModified = Change(rawValue: kFSEventStreamEventFlagItemXattrMod)
 }
 
+extension Change: Hashable {
+
+    public var hashValue: Int {
+        return 879 &* rawValue
+    }
+}
+
 extension Change: CustomStringConvertible {
 
     public var description: String {

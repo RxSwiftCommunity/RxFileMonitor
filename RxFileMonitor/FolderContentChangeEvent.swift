@@ -27,4 +27,14 @@ public struct FolderContentChangeEvent: CustomStringConvertible {
 
         return "\(eventPath) (\(eventId)) changed: \(change)"
     }
+
+    public init(
+        eventId: FSEventStreamEventId,
+        eventPath: String,
+        change: Change) {
+
+        self.eventId = eventId
+        self.eventPath = eventPath
+        self.change = change
+    }
 }

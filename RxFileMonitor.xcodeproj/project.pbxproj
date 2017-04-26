@@ -64,6 +64,7 @@
 		5096B2C01DD22D6000076058 /* FolderContentChangeEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderContentChangeEvent.swift; sourceTree = "<group>"; };
 		5096B2C21DD22FC200076058 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5096B2C41DD2333E00076058 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		50D46C431EB0766300AB15C8 /* RxFileMonitor.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = RxFileMonitor.podspec; sourceTree = "<group>"; };
 		50E835431DD1B26900783B62 /* RxFileMonitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxFileMonitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50E835461DD1B26900783B62 /* RxFileMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxFileMonitor.h; sourceTree = "<group>"; };
 		50E835471DD1B26900783B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 			children = (
 				5096B2C41DD2333E00076058 /* README.md */,
 				5096B2C21DD22FC200076058 /* LICENSE */,
+				50D46C431EB0766300AB15C8 /* RxFileMonitor.podspec */,
 				50E835451DD1B26900783B62 /* RxFileMonitor */,
 				50E835501DD1B26900783B62 /* RxFileMonitorTests */,
 				50E835621DD1B28400783B62 /* Example */,

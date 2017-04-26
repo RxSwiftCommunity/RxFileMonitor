@@ -32,7 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         report(url)
 
-        FolderContentMonitor(url: url)
+        FolderContentMonitor(url: url, latency: 0)
             .asObservable()
 
             // Ignore Finder folder settings

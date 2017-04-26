@@ -21,34 +21,43 @@ public class FolderContentMonitor {
     public let pathsToWatch: [String]
     public private(set) var hasStarted = false
     private var streamRef: FSEventStreamRef!
-
+    public let latency: CFTimeInterval
     public private(set) var lastEventId: FSEventStreamEventId
 
     /// - parameter url: Folder to monitor.
     /// - parameter sinceWhen: Reference event for the subscription. Default
     ///   is `kFSEventStreamEventIdSinceNow`.
+    /// - parameter latency: Interval (in seconds) to allow coalescing events.
     /// - parameter callback: Callback for incoming file system events. Can be ignored
     ///   when you use the monitor `asObservable`
     public convenience init(
         url: URL,
         sinceWhen: FSEventStreamEventId = FSEventStreamEventId(kFSEventStreamEventIdSinceNow),
+        latency: CFTimeInterval = 0,
         callback: ((FolderContentChangeEvent) -> Void)? = nil) {
 
-        self.init(pathsToWatch: [url.path], sinceWhen: sinceWhen, callback: callback)
+        self.init(
+            pathsToWatch: [url.path],
+            sinceWhen: sinceWhen,
+            latency: latency,
+            callback: callback)
     }
 
     /// - parameter pathsToWatch: Collection of file or folder paths.
     /// - parameter sinceWhen: Reference event for the subscription. Default 
     ///   is `kFSEventStreamEventIdSinceNow`.
+    /// - parameter latency: Interval (in seconds) to allow coalescing events.
     /// - parameter callback: Callback for incoming file system events. Can be ignored
     ///   when you use the monitor `asObservable`
     public init(
         pathsToWatch: [String],
         sinceWhen: FSEventStreamEventId = FSEventStreamEventId(kFSEventStreamEventIdSinceNow),
+        latency: CFTimeInterval = 0,
         callback: ((FolderContentChangeEvent) -> Void)? = nil) {
 
         self.lastEventId = sinceWhen
         self.pathsToWatch = pathsToWatch
+        self.latency = latency
         self.callback = callback
     }
 
@@ -63,7 +72,14 @@ public class FolderContentMonitor {
         var context = FSEventStreamContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
         context.info = Unmanaged.passUnretained(self).toOpaque()
         let flags = UInt32(kFSEventStreamCreateFlagUseCFTypes | kFSEventStreamCreateFlagFileEvents)
-        streamRef = FSEventStreamCreate(kCFAllocatorDefault, eventCallback, &context, pathsToWatch as CFArray, lastEventId, 0, flags)
+        streamRef = FSEventStreamCreate(
+            kCFAllocatorDefault,
+            eventCallback,
+            &context,
+            pathsToWatch as CFArray,
+            lastEventId,
+            latency,
+            flags)
 
         FSEventStreamScheduleWithRunLoop(streamRef, CFRunLoopGetMain(), CFRunLoopMode.defaultMode.rawValue)
         FSEventStreamStart(streamRef)

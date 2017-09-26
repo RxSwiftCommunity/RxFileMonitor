@@ -14,6 +14,7 @@
 		5096B2BA1DD2217900076058 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5096B2B61DD2216B00076058 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5096B2BC1DD221D700076058 /* RxFileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096B2BB1DD221D700076058 /* RxFileMonitor.swift */; };
 		5096B2C11DD22D6000076058 /* FolderContentChangeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5096B2C01DD22D6000076058 /* FolderContentChangeEvent.swift */; };
+		50B257C91F7AB26D0044F65F /* RxSwift.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5096B2B61DD2216B00076058 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50E8354D1DD1B26900783B62 /* RxFileMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E835431DD1B26900783B62 /* RxFileMonitor.framework */; };
 		50E835521DD1B26900783B62 /* RxFileMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E835511DD1B26900783B62 /* RxFileMonitorTests.swift */; };
 		50E835541DD1B26900783B62 /* RxFileMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 50E835461DD1B26900783B62 /* RxFileMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,6 +44,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		50B257C81F7AB25D0044F65F /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				50B257C91F7AB26D0044F65F /* RxSwift.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		50E835741DD1BE2700783B62 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -213,6 +225,7 @@
 				50E835481DD1B26900783B62 /* Sources */,
 				50E835491DD1B26900783B62 /* Frameworks */,
 				50E8354A1DD1B26900783B62 /* Resources */,
+				50B257C81F7AB25D0044F65F /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,7 +269,7 @@
 					50E835421DD1B26900783B62 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = FRMDA3XRGC;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					50E8354B1DD1B26900783B62 = {
@@ -267,6 +280,7 @@
 					50E835601DD1B28400783B62 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = FRMDA3XRGC;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -505,7 +519,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -531,7 +546,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.christiantietze.RxFileMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -549,7 +565,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.christiantietze.RxFileMonitorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -567,7 +583,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.christiantietze.RxFileMonitorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -586,7 +602,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.christiantietze.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -605,7 +622,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.christiantietze.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

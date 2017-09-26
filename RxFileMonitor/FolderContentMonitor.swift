@@ -92,14 +92,12 @@ public class FolderContentMonitor {
         contextInfo: UnsafeMutableRawPointer?,
         numEvents: Int,
         eventPaths: UnsafeMutableRawPointer,
-        eventFlags: UnsafePointer<FSEventStreamEventFlags>?,
-        eventIds: UnsafePointer<FSEventStreamEventId>?) in
+        eventFlags: UnsafePointer<FSEventStreamEventFlags>,
+        eventIds: UnsafePointer<FSEventStreamEventId>) in
 
         let fileSystemWatcher: FolderContentMonitor = unsafeBitCast(contextInfo, to: FolderContentMonitor.self)
 
         guard let callback = fileSystemWatcher.callback,
-            let eventIds = eventIds,
-            let eventFlags = eventFlags,
             let paths = unsafeBitCast(eventPaths, to: NSArray.self) as? [String]
             else { return }
 

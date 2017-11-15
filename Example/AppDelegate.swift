@@ -43,13 +43,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .subscribe(onNext: { event in
                 self.report("\(event.filename) changed (\(event.change))")
             })
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 
     func report(_ text: CustomStringConvertible) {
 
         DispatchQueue.main.async {
-            self.textView.string = (self.textView.string ?? "")
+            self.textView.string = self.textView.string
                 .appending(text.description)
                 .appending("\n\n")
         }

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "RxFileMonitor"
-  s.version          = "1.0.2"
+  s.version          = "1.2.1"
   s.summary          = "RxSwift reactive wrapper for Mac file system events."
 
   s.description      = <<-DESC
@@ -17,8 +17,8 @@ DESC
 
   s.osx.deployment_target = '10.11'
   
-  s.source_files = 'RxFileMonitor/*.swift'
-  s.osx.source_files      = 'RxFileMonitor/*.swift'
+  s.source_files     = 'RxFileMonitor/*.swift'
+  s.osx.source_files = 'RxFileMonitor/*.swift'
   
-  s.dependency 'RxSwift', '~> 3.0'  
+  s.dependency 'RxSwift', '~> 4.0'
 end

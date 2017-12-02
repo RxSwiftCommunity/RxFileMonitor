@@ -101,11 +101,11 @@ public class FolderContentMonitor {
             let paths = unsafeBitCast(eventPaths, to: NSArray.self) as? [String]
             else { return }
 
-        (0..<numEvents)
-            .map { (index: Int) -> FolderContentChangeEvent in
-                let change = Change(eventFlags: eventFlags[index])
-                return FolderContentChangeEvent(eventId: eventIds[index], eventPath: paths[index], change: change)
-            }.forEach(callback)
+        for index in 0 ..< numEvents {
+            let change = Change(eventFlags: eventFlags[index])
+            let event = FolderContentChangeEvent(eventId: eventIds[index], eventPath: paths[index], change: change)
+            callback(event)
+        }
 
         fileSystemWatcher.lastEventId = eventIds[numEvents - 1]
     }

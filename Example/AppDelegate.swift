@@ -69,4 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    @IBAction func clear(_ sender: Any?) {
+        self.textView.string = ""
+    }
 }

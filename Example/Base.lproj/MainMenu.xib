@@ -159,6 +159,11 @@
                                     <action selector="paste:" target="-1" id="UvS-8e-Qdg"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Clear" keyEquivalent="k" id="CXy-6H-sDO">
+                                <connections>
+                                    <action selector="clear:" target="-1" id="gae-Ub-O87"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Paste and Match Style" keyEquivalent="V" id="WeT-3V-zwk">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -614,10 +614,10 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="View" id="HyV-fh-RgO">
                         <items>
-                            <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
+                            <menuItem title="Show Toolbar" keyEquivalent="t" id="fIh-Rj-szY">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
-                                    <action selector="toggleToolbarShown:" target="-1" id="BXY-wc-z0C"/>
+                                    <action selector="toggleToolbarShown:" target="-1" id="6bd-bF-QwW"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Customize Toolbar…" id="1UK-8n-QPP">
@@ -657,6 +657,12 @@
                                     <action selector="performZoom:" target="-1" id="DIl-cC-cCs"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Always On Top" state="on" id="NnD-qK-qfd">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <binding destination="Voe-Tx-rLC" name="value" keyPath="self.windowIsAlwaysOnTop" id="3go-V1-Qwa"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
                             <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -680,6 +686,7 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="140" y="2"/>
         </menu>
         <window title="Example" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
@@ -693,15 +700,15 @@
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DO8-4I-31p">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                         <clipView key="contentView" id="nWJ-9b-dlZ">
-                            <rect key="frame" x="1" y="1" width="463" height="358"/>
+                            <rect key="frame" x="1" y="1" width="478" height="358"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="7FD-9H-h8A">
-                                    <rect key="frame" x="0.0" y="0.0" width="463" height="358"/>
+                                <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="7FD-9H-h8A">
+                                    <rect key="frame" x="0.0" y="0.0" width="478" height="358"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="463" height="358"/>
-                                    <size key="maxSize" width="464" height="10000000"/>
+                                    <size key="minSize" width="478" height="358"/>
+                                    <size key="maxSize" width="480" height="10000000"/>
                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 </textView>
                             </subviews>
@@ -712,7 +719,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="aez-qN-Lgb">
-                            <rect key="frame" x="464" y="1" width="15" height="358"/>
+                            <rect key="frame" x="463" y="1" width="16" height="358"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>

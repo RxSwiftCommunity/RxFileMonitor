@@ -58,4 +58,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
 
     }
+
+    @objc dynamic var windowIsAlwaysOnTop: Bool = false {
+        didSet {
+            if windowIsAlwaysOnTop {
+                window.level = .modalPanel
+            } else {
+                window.level = .normal
+            }
+        }
+    }
+
 }

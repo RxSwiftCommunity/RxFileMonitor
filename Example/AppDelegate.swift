@@ -46,12 +46,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .disposed(by: disposeBag)
     }
 
+    lazy var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        return dateFormatter
+    }()
+
     func report(_ text: CustomStringConvertible) {
 
+        let line = "\(dateFormatter.string(from: Date())) : \(text.description)\n"
+
         DispatchQueue.main.async {
-            self.textView.string = self.textView.string
-                .appending(text.description)
-                .appending("\n\n")
+            self.textView.string = self.textView.string.appending(line)
         }
     }
 

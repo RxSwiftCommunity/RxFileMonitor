@@ -4,6 +4,8 @@
 
 RxSwift `Observable` wrapper for CoreFoundation file system events.
 
+The example app can serve as an always-on-top floating file event log. Launch the app, select a directory, select _Window > Always On Top_, and enjoy the events pouring in. You can also <kbd>⌘K</kbd> clear logged messages.
+
 ## Usage
 
 The most convenient usage is through the RxSwift `Observable` exposed in the module as:

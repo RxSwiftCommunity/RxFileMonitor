@@ -33,3 +33,11 @@ extension FolderContentMonitor: ObservableConvertibleType {
         }
     }
 }
+
+extension FolderContentMonitor: ReactiveCompatible { }
+
+extension Reactive where Base: FolderContentMonitor {
+    public var folderContentChange: Observable<FolderContentChangeEvent> {
+        return self.base.asObservable()
+    }
+}

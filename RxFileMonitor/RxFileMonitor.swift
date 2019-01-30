@@ -9,35 +9,34 @@
 import Foundation
 import RxSwift
 
-extension FolderContentMonitor: ObservableConvertibleType {
-
-    public func asObservable() -> Observable<FolderContentChangeEvent> {
-
-        return Observable.create { observer in
-
-            // Wrap existing callback
-            let oldCallback = self.callback
-
-            self.callback = { event in
-                oldCallback?(event)
-                observer.on(.next(event))
-            }
-
-            if !self.hasStarted {
-                self.start()
-            }
-
-            return Disposables.create {
-                self.stop()
-            }
-        }
-    }
-}
-
 extension FolderContentMonitor: ReactiveCompatible { }
 
 extension Reactive where Base: FolderContentMonitor {
     public var folderContentChange: Observable<FolderContentChangeEvent> {
-        return self.base.asObservable()
+        return Observable<FolderContentChangeEvent>.create { [weak weakMonitor = self.base] observer in
+
+            guard let monitor = weakMonitor else {
+                observer.onCompleted()
+                return Disposables.create()
+            }
+
+            // Wrap existing callback
+            let oldCallback = monitor.callback
+
+            monitor.callback = { event in
+                oldCallback?(event)
+                observer.on(.next(event))
+            }
+
+            if !monitor.hasStarted {
+                monitor.start()
+            }
+
+            return Disposables.create {
+                if let strongBase = weakMonitor {
+                    strongBase.stop()
+                }
+            }
+        }
     }
 }

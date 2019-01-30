@@ -16,7 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
     @IBOutlet var textView: NSTextView!
 
-    let disposeBag = DisposeBag()
+    var monitor: FolderContentMonitor!
+    var disposeBag: DisposeBag! = DisposeBag()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
@@ -32,15 +33,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         report(url)
 
-        FolderContentMonitor(url: url, latency: 0)
-            .asObservable()
+        self.monitor = FolderContentMonitor(url: url, latency: 0)
+        monitor.rx.folderContentChange
 
             // Ignore Finder folder settings
             .filter { $0.filename != ".DS_Store" }
 
             // Report changes into app's main log
             .subscribeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { event in
+            .subscribe(onNext: { [unowned self] event in
                 self.report("\(event.filename) changed (\(event.change))")
             })
             .disposed(by: disposeBag)

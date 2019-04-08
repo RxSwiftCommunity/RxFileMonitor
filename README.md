@@ -28,7 +28,7 @@ let disposeBag = DisposeBag()
 let folderUrl = URL(fileURLWithPath: "/path/to/monitor/")
 
 FolderContentMonitor(url: folderUrl)
-    .asObservable()
+    .folderContentChange
     .subscribe(onNext: { event in
         print("Folder contents changed at \(event.url) (\(event.change))")
     })

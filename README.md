@@ -28,7 +28,7 @@ let disposeBag = DisposeBag()
 let folderUrl = URL(fileURLWithPath: "/path/to/monitor/")
 
 FolderContentMonitor(url: folderUrl)
-    .asObservable()
+    .folderContentChange
     .subscribe(onNext: { event in
         print("Folder contents changed at \(event.url) (\(event.change))")
     })
@@ -41,7 +41,7 @@ Say you want to update a cache of a folder's notes' contents, you'll be interest
 
 ```swift
 let changedFile = FolderContentMonitor(url: folderUrl)
-    .asObservable()
+    .folderContentChange
     // Files only ...
     .filter { $0.change.contains(.isFile) }
     // ... except the user's folder settings.
@@ -60,7 +60,7 @@ Or if you simply rebuild the whole cache when anything changed, you can stop aft
 
 ```swift
 let changedFile = FolderContentMonitor(url: folderUrl)
-    .asObservable()
+    .folderContentChange
     .filter { $0.change.contains(.isFile) }
     .filter { $0.filename != ".DS_Store" }
     .observeOn(MainScheduler.instance)

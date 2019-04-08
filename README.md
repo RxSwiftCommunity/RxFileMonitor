@@ -1,6 +1,6 @@
 # RxFileMonitor
 
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) ![macOS Compatible](https://img.shields.io/badge/platform-macos-lightgrey.svg)
 
 RxSwift `Observable` wrapper for CoreFoundation file system events.
 

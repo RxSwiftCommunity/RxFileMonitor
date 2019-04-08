@@ -8,16 +8,12 @@ The example app can serve as an always-on-top floating file event log. Launch th
 
 ## Usage
 
-The most convenient usage is through the RxSwift `Observable` exposed in the module as:
-
-```swift
-Monitoring.folderMonitor(url: URL) -> Observable<FolderContentChangeEvent>
-```
-
-You use it on a folder and will be notified about ...
+You set up a `FolderContentMonitor` on a folder and will be notified about ...
 
 - changes to the folder itself, and
 - changes to any item inside it (not including sub-folders).
+
+It exposes a reactive extension via `.rx.folderContentChange` for your convenience.
 
 Example:
 
@@ -27,12 +23,14 @@ import RxFileMonitor
 let disposeBag = DisposeBag()
 let folderUrl = URL(fileURLWithPath: "/path/to/monitor/")
 
-FolderContentMonitor(url: folderUrl)
-    .folderContentChange
+// Keep this strongly referenced/alive
+let monitor = FolderContentMonitor(url: folderUrl)
+
+monitor.rx.folderContentChange
     .subscribe(onNext: { event in
         print("Folder contents changed at \(event.url) (\(event.change))")
     })
-    .addDisposableTo(disposeBag)
+    .disposed(by: disposeBag)
 ```
 
 ### Reacting to file content changes only
@@ -40,14 +38,15 @@ FolderContentMonitor(url: folderUrl)
 Say you want to update a cache of a folder's notes' contents, you'll be interested in files only:
 
 ```swift
-let changedFile = FolderContentMonitor(url: folderUrl)
-    .folderContentChange
+self.monitor = FolderContentMonitor(url: folderUrl)
+let changedFile = self.monitor.rx.folderContentChange
     // Files only ...
     .filter { $0.change.contains(.isFile) }
     // ... except the user's folder settings.
     .filter { $0.filename != ".DS_Store" }
     .map { $0.filename }
     .observeOn(MainScheduler.instance)
+    .disposed(by: disposeBag)
 ```
 
 Now you will want to update the cache for the changed file:
@@ -59,8 +58,9 @@ changedFile.subscribe(onNext: cache.updateFile)
 Or if you simply rebuild the whole cache when anything changed, you can stop after filtering for accepted events:
 
 ```swift
-let changedFile = FolderContentMonitor(url: folderUrl)
-    .folderContentChange
+// Keep this strongly references
+self.monitor = FolderContentMonitor(url: folderUrl)
+let changedFile = self.monitor.rx.folderContentChange
     .filter { $0.change.contains(.isFile) }
     .filter { $0.filename != ".DS_Store" }
     .observeOn(MainScheduler.instance)

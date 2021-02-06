@@ -20,5 +20,5 @@ DESC
   s.source_files     = 'RxFileMonitor/*.swift'
   s.osx.source_files = 'RxFileMonitor/*.swift'
 
-  s.dependency 'RxSwift', '~> 5.0'
+  s.dependency 'RxSwift', '~> 6.0'
 end

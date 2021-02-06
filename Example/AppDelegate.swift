@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .filter { $0.filename != ".DS_Store" }
 
             // Report changes into app's main log
-            .subscribeOn(MainScheduler.asyncInstance)
+            .subscribe(on: MainScheduler.asyncInstance)
             .subscribe(onNext: { [unowned self] event in
                 self.report("\(event.filename) changed (\(event.change))")
             })

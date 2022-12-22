@@ -27,9 +27,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         panel.allowsMultipleSelection = false
         let result = panel.runModal()
 
-        guard result.rawValue == NSFileHandlingPanelOKButton,
+        guard result == .OK,
             let url = panel.urls.first
-            else { NSApp.terminate(self); return }
+        else { NSApp.terminate(self); return }
 
         report(url)
 

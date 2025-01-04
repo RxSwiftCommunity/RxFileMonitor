@@ -16,7 +16,8 @@ let package = Package(
         .target(
             name: "RxFileMonitor",
             dependencies: ["RxSwift"],
-            path: "RxFileMonitor"
+            path: "RxFileMonitor",
+            exclude: ["Info.plist"]
         )
     ]
 )
